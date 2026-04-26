@@ -1,4 +1,5 @@
 package JOBSHEET9;
+
 public class StackTugasMahasiswa23 {
     Mahasiswa23[] stack;
     int top;
@@ -38,6 +39,7 @@ public class StackTugasMahasiswa23 {
     public Mahasiswa23 pop() {
         if (!isEmpty()) {
             Mahasiswa23 mhs = stack[top];
+            stack[top] = null;
             top--;
             return mhs;
         } else {
@@ -55,11 +57,28 @@ public class StackTugasMahasiswa23 {
         }
     }
 
+    // Modifikasi
+    public Mahasiswa23 peekBottom() {
+        if (!isEmpty()) {
+            return stack[0];
+        } else {
+            return null;
+        }
+    }
+
+    //modifikasi
+    public int size() {
+        return top + 1;
+    }
+
     public void print() {
-        for (int i = 0; i <= top; i++) {
-            System.out.println(stack[i].nama + "\t" + stack[i].nim + "\t" + stack[i].kelas + "\t" + stack[i].kelas);
+        if (!isEmpty()) {
+            for (int i = top; i >= 0 && i < size; i--) {
+                System.out.println(stack[i].nama + "\t" + stack[i].nim + "\t" + stack[i].kelas);
+            }
+        } else {
+            System.out.println("Stack kosong!");
         }
         System.out.println("");
     }
-
 }
