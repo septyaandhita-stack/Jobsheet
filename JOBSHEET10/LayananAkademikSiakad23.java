@@ -16,6 +16,7 @@ public class LayananAkademikSiakad23 {
             System.out.println("3. Lihat Mahasiswa Terdepan");
             System.out.println("4. Lihat semua Antrian");
             System.out.println("5. Jumlah Mahasiswa dalam Antrian");
+            System.out.println("6. Cek antrian paling belakang");
             System.out.println("0. Keluar");
             System.out.print("Pilih Menu: ");
             pilihan = sc.nextInt();
@@ -50,6 +51,9 @@ public class LayananAkademikSiakad23 {
                 case 5:
                     System.out.println("Jumlah dalam antrian: " + antrian.getJumlahANtrian());
                     break;
+                case 6:
+                    antrian.lihatAkhir();
+                    break;
                 case 0:
                     System.out.println("Terima kasih.");
                     break;
@@ -58,5 +62,6 @@ public class LayananAkademikSiakad23 {
                     break;
             }
         } while (pilihan != 0);
+        sc.close();
     }
 }
