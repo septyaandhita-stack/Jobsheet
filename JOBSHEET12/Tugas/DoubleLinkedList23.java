@@ -1,4 +1,4 @@
-package JOBSHEET12;
+package JOBSHEET12.Tugas;
 
 public class DoubleLinkedList23 {
     Node23 head;
@@ -9,6 +9,10 @@ public class DoubleLinkedList23 {
         head = null;
         tail = null;
         size = 0;
+    }
+
+    public int size() {
+        return size;
     }
 
     public boolean isEmpty() {
@@ -24,6 +28,7 @@ public class DoubleLinkedList23 {
             newNode23.next = head;
             head = newNode23;
         }
+        size++;
     }
 
     public void addLast(Mahasiswa23 data) {
@@ -35,6 +40,41 @@ public class DoubleLinkedList23 {
             newNode23.prev = tail;
             tail = newNode23;
         }
+        size++;
+    }
+
+    public void add(int index, Mahasiswa23 data) {
+
+        if (index < 0 || index > size) {
+            System.out.println("Indeks di luar batas.");
+            return;
+        }
+
+        if (index == 0) {
+            addFirst(data);
+            return;
+        }
+
+        if (index == size) {
+            addLast(data);
+            return;
+        }
+
+        Node23 current = head;
+
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        Node23 newNode = new Node23(data);
+
+        newNode.prev = current.prev;
+        newNode.next = current;
+
+        current.prev.next = newNode;
+        current.prev = newNode;
+
+        size++;
     }
 
     public void insertAfter(String keyNim, Mahasiswa23 data) {
@@ -62,6 +102,7 @@ public class DoubleLinkedList23 {
             current.next = newNode;
         }
         System.out.println("Data behasil disisipkan setelah NIM " + keyNim);
+        size++;
     }
 
     public void print() {
@@ -108,6 +149,7 @@ public class DoubleLinkedList23 {
             head = head.next;
             head.prev = null;
         }
+        size--;
     }
 
     public void removeLast() {
@@ -126,6 +168,7 @@ public class DoubleLinkedList23 {
             tail = tail.prev;
             tail.next = null;
         }
+        size--;
     }
 
     public void removeAfter(String keyNim) {
@@ -144,13 +187,18 @@ public class DoubleLinkedList23 {
         }
 
         if (current.next == null) {
-            System.out.println("Tidak ada node setelah data tersebeut.");
+            System.out.println("Tidak ada node setelah data tersebut.");
             return;
         }
         Node23 hapus = current.next;
+
+        System.out.println("Data yang dihapus: ");
         hapus.data.tampilInformasi();
 
         if (hapus == tail) {
+            tail = current;
+            tail.next = null;
+        } else {
             current.next = hapus.next;
             hapus.next.prev = current;
         }
@@ -230,5 +278,4 @@ public class DoubleLinkedList23 {
         System.out.println("Data pada indeks ke-" + index + ":");
         current.data.tampilInformasi();
     }
-
 }
